@@ -20,12 +20,12 @@ std::string Placedecorator::getName() {
 WeatherFeature::WeatherFeature (Place* wrapped, std::string condition):
 Placedecorator(wrapped) , condition(condition) {}
 
-void TollFeature::print(int depth) {
+void WeatherFeature::print(int depth) {
     Placedecorator::print(depth);
     for (int i = 0; i < depth + 1; ++i){
         std::cout << "  ";
     }
-    std::cout << " toll fee: " << fee << std::endl;
+    std::cout << " weather: " << condition << std::endl;
 }
 
 //QuestFeature (Concrete Decorator)
@@ -38,4 +38,15 @@ void QuestFeature::print(int depth) {
         std::cout << "  ";
     }
     std::cout << " quest available: " << questname << std::endl;
+}
+
+//TollFeature
+TollFeature::TollFeature(Place* wrapped, double fee) : Placedecorator(wrapped),fee(fee) {}
+ 
+void TollFeature::print(int depth){
+    Placedecorator::print(depth);
+    for (int i = 0; i < depth + 1; ++i){
+        std::cout << "  ";
+    }
+    std::cout << " toll fee: " <<fee<< std::endl;
 }
